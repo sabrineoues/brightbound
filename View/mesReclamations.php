@@ -16,6 +16,8 @@ $list = $reclamationC->recList(); // This method will fetch all reclamations
 <style>
     /* General Styles */
 /* General Styles */
+/* General Styles */
+/* General Styles */
 * {
     margin: 0;
     padding: 0;
@@ -24,12 +26,18 @@ $list = $reclamationC->recList(); // This method will fetch all reclamations
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f7f9fc;
+    background-image: url('logoo.png');
+    background-size: cover;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Ensure the background image covers the entire body */
     color: #333;
+
 }
 
+
 .container {
-    width: 80%;
+    width: 90%; /* Increased width of the container */
+    max-width: 1200px; /* Set a maximum width for larger screens */
     margin: 30px auto;
     background-color: #fff;
     padding: 40px;
@@ -49,53 +57,50 @@ h1 {
 }
 
 /* Table Styling */
+/* Table Styling */
 table {
-    width: 100%;
+    width: 100%; /* Table takes full width of the container */
     border-collapse: collapse;
     margin-top: 30px;
 }
 
-th, td {
-    padding: 16px;
-    text-align: left;
-    border-bottom: 1px solid #e5e5e5;
-}
-
 th {
-    background-color: #3498db;
-    color: white;
+    background-color: #2ecc71; /* Green background for table headers */
+    color: white; /* White text color for headers */
     font-size: 16px;
 }
 
 td {
-    background-color: #f9f9f9;
+    background-color: #e8f5e9; /* Light green background for table cells */
     font-size: 14px;
     color: #555;
+    word-wrap: break-word; /* Allow long words to break and wrap */
+    max-width: 200px; /* Set a maximum width for the description column */
 }
 
 tr:nth-child(even) td {
-    background-color: #f4f6f9;
+    background-color: #c8e6c9; /* Slightly darker light green for even rows */
 }
 
 tr:hover td {
-    background-color: #e0f7fa;
+    background-color: #a5d6a7; /* Darker green on hover */
 }
-
 /* Button Styles */
 a, input[type="submit"] {
-    background-color: #3498db;
+    background-color: #27ae60; /* Changed button color to a darker green */
     color: white;
-    padding: 12px 25px;
+    padding: 15px 30px; /* Increased padding for a larger button */
     border: none;
     border-radius: 5px;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 16px; /* Increased font size */
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-block; /* Ensure the button behaves like a block element */
 }
 
 a:hover, input[type="submit"]:hover {
-    background-color: #2980b9;
+    background-color: #219653; /* Darker green on hover */
     transform: translateY(-2px);
 }
 
@@ -121,11 +126,11 @@ form {
     display: block;
     background-color: #2ecc71;
     color: white;
-    padding: 10px 20px;
+    padding: 15px 30px; /* Increased padding for a larger button */
     border-radius: 5px;
     text-decoration: none;
     text-align: center;
-    width: 180px;
+    width: 200px; /* Increased width */
     margin: 20px auto;
     font-size: 16px;
     transition: background-color 0.3s ease;
@@ -159,10 +164,7 @@ form {
         padding: 10px 20px;
         font-size: 13px;
     }
-}
-
-
-</style>
+}</style>
 <body>
     <a href="addReclamation.php">Add Reclamation</a>
     <table border>

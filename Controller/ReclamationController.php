@@ -26,6 +26,7 @@ class ReclamationController
             $query = $db->prepare($sql);
             
             $query->execute();
+            $reclamation = $query->fetch(PDO::FETCH_ASSOC);
             return $reclamation;
         } catch (Exception $e) {
             die('Erreur: ' . $e->getMessage());
@@ -59,29 +60,31 @@ class ReclamationController
     
     
         function updateReclamation($reclamation, $id_reclamation)
-        {
-            $db = config::getConnexion();
-        
-            $query = $db->prepare(
-                'UPDATE reclamation SET 
-                    
-                    state = :state,
-                    
-                WHERE id_reclamation = :id_reclamation'
-            );
-        
-            try {
-                $query->execute([
-                    
-                    'state' => $reclamation->getState(),
-                    
-                ]);
-        
-                echo $query->rowCount() . " records UPDATED successfully <br>";
-            } catch (PDOException $e) {
-                echo "Error: " . $e->getMessage();
-            }
-        }
+{
+    $db = config::getConnexion();
+
+    // Corrected SQL statement
+    $query = $db->prepare(
+        'UPDATE reclamation SET 
+            description = :description,
+            state = :state
+        WHERE id_reclamation = :id_reclamation'
+    );
+
+    try {
+        // Execute the query with all parameters
+        $query->execute([
+            'state' => $reclamation->getState(),
+            'description' => $reclamation->getDescription(),
+            'id_reclamation' => $id_reclamation // Bind the id_reclamation parameter
+        ]);
+
+        echo $query->rowCount() . " records UPDATED successfully <br>";
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+}
+
         
 
 
