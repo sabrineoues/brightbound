@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Corps de la page */
+body {
+    background-color: #e8f5e9; /* Vert clair */
+    color: #347f53; /* Texte vert foncé */
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* En-tête */
+header {
+    background-color: #257f69; /* Vert moyen */
+    color: white;
+    padding: 20px;
+   
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(56, 142, 60, 0.2);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+header p {
+    font-size: 1.2rem;
+    text-align: center;
+}
+header a{
+    text-align: left;
+    font-size: 1.3rem;
+    color: aliceblue;
+    font-family: 'Verdana, Geneva, sans-serif';
+}
+
+/* Conteneur du formulaire */
+.form-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 40px 0;
+}
+
+/* Boîte de formulaire */
+.form-box {
+    background-color: #ffffff; /* Fond blanc pour les formulaires */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(41, 114, 85, 0.1);
+    width: 45%;
+    min-width: 300px;
+    margin: 20px;
+    text-align: center;
+}
+
+.form-box h2 {
+    font-size: 2rem;
+    color: #19814e; /* Vert plus foncé pour le titre */
+    margin-bottom: 10px;
+}
+
+.form-box input, .form-box select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #66bb6a; /* Bordure vert clair */
+    border-radius: 6px;
+}
+
+.form-box button {
+    background-color: #247c65; /* Vert foncé pour le bouton */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-box button:hover {
+    background-color: #004d40; /* Vert très foncé au survol */
+}
+
+.form-box p {
+    font-size: 0.9rem;
+    color: #388e6d; /* Vert moyen pour le texte */
+}
+
+.form-box a {
+    color: #66bb6a; /* Lien vert clair */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.form-box a:hover {
+    text-decoration: underline;
+}
+
+/* Pied de page */
+footer {
+    background-color: #2e7d32; /* Vert foncé */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 -4px 8px rgba(56, 142, 60, 0.2);
+}
+
+footer p {
+    font-size: 1rem;
+}

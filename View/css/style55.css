@@ -1,0 +1,150 @@
+/* Réinitialisation générale */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 30px;
+    box-shadow: #555;
+}
+
+/* Conteneur principal */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Lien "Add" en haut */
+.lien {
+    display: inline-block;
+    background-color: #349b64;
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.lien:hover {
+    background-color: #56a049;
+    transform: translateY(-2px);
+}
+
+/* Style du tableau */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 16px;
+    text-align: left;
+    font-size: 14px;
+    color: #555;
+}
+
+th {
+    background-color:#349b64;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Bordures des cellules */
+td, th {
+    border-bottom: 1px solid #ddd;
+}
+
+/* Boutons "Update" et "Delete" */
+form input[type="submit"], a.delete-btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* Bouton "Update" */
+form input[type="submit"] {
+    background-color:#349b64;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+form input[type="submit"]:hover {
+    background-color:#349b64;
+    transform: translateY(-2px);
+}
+
+/* Bouton "Delete" */
+a.delete-btn {
+    background-color: #ff021b;
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    text-align: center;
+}
+
+a.delete-btn:hover {
+    background-color: #f7071f;
+    transform: translateY(-2px);
+}
+
+/* Responsivité */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    .lien {
+        font-size: 14px;
+        padding: 10px 20px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+    th, td {
+        padding: 12px;
+        font-size: 12px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    form input[type="submit"], a.delete-btn {
+        font-size: 12px;
+        padding: 6px 12px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+}

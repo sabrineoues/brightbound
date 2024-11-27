@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Corps de la page */
+
+/* En-tête */
+header {
+    background-color: #257f69; /* Vert moyen */
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(56, 142, 60, 0.2);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+header p {
+    font-size: 1.2rem;
+    text-align: center;
+}
+header a{
+    text-align: left;
+    font-size: 1.3rem;
+    color: aliceblue;
+    font-family: 'Verdana, Geneva, sans-serif';
+}
+
