@@ -128,6 +128,15 @@ button:hover {
     margin-top: 20px; /* Space above the footer */
     color: #888; /* Light gray color for footer text */
 }
+ .error-container {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 5px;
+            display: none; /* Initially hidden */
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -171,49 +180,54 @@ button:hover {
 <div class="footer">
     <p>&copy; 2024 - Assistance Étudiante</p>
 </div>
+<div id="error-message" class="error-container"></div>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Récupérer le formulaire
-        const form = document.querySelector("form");
+        document.addEventListener("DOMContentLoaded", function () {
+            // Récupérer le formulaire
+            const form = document.querySelector("form");
+            const errorMessageDiv = document.getElementById("error-message");
 
-        form.addEventListener("submit", function (event) {
-            let isValid = true; // Variable pour vérifier si le formulaire est valide
-            let errorMessages = []; // Tableau pour stocker les messages d'erreur
+            form.addEventListener("submit", function (event) {
+                let isValid = true; // Variable pour vérifier si le formulaire est valide
+                let errorMessages = []; // Tableau pour stocker les messages d'erreur
 
-            // Récupérer les champs
-            const idField = document.getElementById("id");
-            const supportTypeField = document.getElementById("support-type");
-            const issueDescriptionField = document.getElementById("issue-description");
+                // Récupérer les champs
+                const idField = document.getElementById("id");
+                const supportTypeField = document.getElementById("support-type");
+                const issueDescriptionField = document.getElementById("issue-description");
 
-            // Validation de l'ID (doit contenir uniquement des chiffres)
-            const idValue = idField.value.trim();
-            if (!/^\d+$/.test(idValue)) {
-                isValid = false;
-                errorMessages.push("L'ID étudiant doit contenir uniquement des chiffres.");
-            }
+                // Validation de l'ID (doit contenir uniquement des chiffres)
+                const idValue = idField.value.trim();
+                if (!/^\d+$/.test(idValue)) {
+                    isValid = false;
+                    errorMessages.push("L'ID étudiant doit contenir uniquement des chiffres.");
+                }
 
-            // Validation du type de réclamation (doit être sélectionné)
-            const supportTypeValue = supportTypeField.value;
-            if (supportTypeValue === "") {
-                isValid = false;
-                errorMessages.push("Veuillez sélectionner un type de réclamation.");
-            }
+                // Validation du type de réclamation (doit être sélectionné)
+                const supportTypeValue = supportTypeField.value;
+                if (supportTypeValue === "") {
+                    isValid = false;
+                    errorMessages.push("Veuillez sélectionner un type de réclamation.");
+                }
 
-            // Validation de la description du problème (au moins 10 caractères)
-            const issueDescriptionValue = issueDescriptionField.value.trim();
-            if (issueDescriptionValue.length < 10) {
-                isValid = false;
-                errorMessages.push("La description du problème doit contenir au moins 10 caractères.");
-            }
+                // Validation de la description du problème (au moins 10 caractères)
+                const issueDescriptionValue = issueDescriptionField.value.trim();
+                if (issueDescriptionValue.length < 10) {
+                    isValid = false;
+                    errorMessages.push("La description du problème doit contenir au moins 10 caractères.");
+                }
 
-            // Si le formulaire est invalide, empêcher l'envoi
-            if (!isValid) {
-                event.preventDefault(); // Empêche l'envoi du formulaire
-                alert("Veuillez corriger les erreurs suivantes :\n" + errorMessages.join("\n"));
-            }
+                // Si le formulaire est invalide, empêcher l'envoi
+                if (!isValid) {
+                    event.preventDefault(); // Empêche l'envoi du formulaire
+                    errorMessageDiv.innerHTML = "<h2>Erreurs :</h2><ul><li>" + errorMessages.join("</li><li>") + "</li></ul>";
+                    errorMessageDiv.style.display = 'block'; // Affiche le message d'erreur
+                } else {
+                    errorMessageDiv.style.display = 'none'; // Cache le message d'erreur si le formulaire est valide
+                }
+            });
         });
-    });
-</script>
+    </script>
 
 </body>
 </html>

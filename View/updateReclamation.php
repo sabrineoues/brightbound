@@ -152,16 +152,25 @@ button:hover {
 
             <!-- Objet -->
             <label for="objet">Objet :</label>
-            <input class="form-control form-control-user" type="text" id="objet" name="objet" value="<?php echo htmlspecialchars($reclamation['objet']); ?>"><br>
-
+            
+            <select id="objet" name="objet"  >
+            <option value=""><?php echo htmlspecialchars($reclamation['objet']); ?></option>
+                <option value="cours">Problème avec le Cours</option>
+                <option value="mentor">Problème avec le Mentor</option>
+                <option value="compte">Problème de Compte Étudiant</option>
+                <option value="comptem">Problème de Compte Mentor</option>
+                <option value="technique">Problème Technique (accès plateforme)</option>
+                <option value="autre">Autre</option>
+            </select>
+       
             <!-- Description -->
             <label for="description">Description :</label>
             <textarea class="form-control form-control-user" id="description" name="description"><?php echo htmlspecialchars($reclamation['description']); ?></textarea><br>
 
             <!-- État -->
-            <label for="state">État :</label>
+            <!--<label for="state">État :</label>
            
-            <input  class="form-control form-control-user" type="text" id="state" name="state" value="<?php echo htmlspecialchars($reclamation['state']); ?>"><br>
+            <input  class="form-control form-control-user" type="text" id="state" name="state" value="<?php echo htmlspecialchars($reclamation['state']); ?>"><br> -->
 
             <!-- Date Réclamation -->
             <label for="date_rec">Date de Réclamation :</label>
@@ -170,6 +179,59 @@ button:hover {
             <!-- Submit Button -->
             <button type="submit">Modifier la Réclamation</button>
         </form>
+        <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the form and the error message container
+        const form = document.querySelector("form");
+        const errorMessageDiv = document.createElement("div"); // Create a dynamic div for error messages
+        errorMessageDiv.id = "error-message";
+        errorMessageDiv.style.display = "none"; // Hide initially
+        errorMessageDiv.style.color = "red";
+        form.prepend(errorMessageDiv); // Place it before the form
+
+        form.addEventListener("submit", function (event) {
+            let isValid = true; // To track form validity
+            let errorMessages = []; // Array to hold error messages
+
+            // Get form fields
+            const objetField = document.getElementById("objet");
+            const descriptionField = document.getElementById("description");
+            const stateField = document.getElementById("state");
+
+            // Validate "Objet" field (at least 3 characters)
+            const objetValue = objetField.value.trim();
+           /* if (objetValue =="") {
+                isValid = false;
+                errorMessages.push("Veuillez sélectionner un type de réclamation.");
+            }*/
+
+            // Validate "Description" field (at least 10 characters)
+            const descriptionValue = descriptionField.value.trim();
+            if (descriptionValue.length < 10) {
+                isValid = false;
+                errorMessages.push("La description doit contenir au moins 10 caractères.");
+            }
+
+            // Validate "State" field (must be one of predefined valid values)
+           /* const validStates = ["en attente", "en cours", "résolue"];
+            const stateValue = stateField.value.trim().toLowerCase();
+            if (!validStates.includes(stateValue)) {
+                isValid = false;
+                errorMessages.push("L'état doit être 'en attente', 'en cours' ou 'résolue'.");
+            }*/
+
+            // If form is invalid, prevent submission and show error messages
+            if (!isValid) {
+                event.preventDefault(); // Stop form submission
+                errorMessageDiv.innerHTML = `<h3>Erreurs :</h3><ul><li>${errorMessages.join("</li><li>")}</li></ul>`;
+                errorMessageDiv.style.display = "block"; // Show the error message div
+            } else {
+                errorMessageDiv.style.display = "none"; // Hide error messages if form is valid
+            }
+        });
+    });
+</script>
+
     <?php
     } else {
         echo "<p>Aucune réclamation trouvée pour mise à jour.</p>";

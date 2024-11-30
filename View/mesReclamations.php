@@ -31,7 +31,6 @@ body {
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Ensure the background image covers the entire body */
     color: #333;
-
 }
 
 

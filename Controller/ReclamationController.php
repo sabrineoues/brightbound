@@ -66,6 +66,7 @@ class ReclamationController
     // Corrected SQL statement
     $query = $db->prepare(
         'UPDATE reclamation SET 
+            objet = :objet,
             description = :description,
             state = :state
         WHERE id_reclamation = :id_reclamation'
@@ -74,6 +75,7 @@ class ReclamationController
     try {
         // Execute the query with all parameters
         $query->execute([
+            'objet' => $reclamation->getObjet(),
             'state' => $reclamation->getState(),
             'description' => $reclamation->getDescription(),
             'id_reclamation' => $id_reclamation // Bind the id_reclamation parameter
