@@ -3,24 +3,19 @@
 </body>
 </html>
 <?php
-include "../Model/reclamation.php";
-include "../Controller/ReclamationController.php";
+include "../Model/reponse.php";
+include "../Controller/reponseController.php";
 
-$reclamation= null;
+$reponse= null;
 $error = "";
 // create an instance of the controller
-$reclamationc = new ReclamationController();
+$reponsec = new reponseController();
 
 //utiliser la fonction isset() pour vérifier si les clés name, price et category existe avant d'y accéder
-if (
-    isset($_POST["id_reclamation"])  && isset($_POST["id"]) && isset($_POST["date_rec"]) && isset($_POST["description"]) && isset($_POST["state"]) && isset($_POST["objet"]) 
-) {
-    //utiliser la fonction empty() pour vérifier si les clés name, price et category posséde des valeurs
-    if (
-        !empty($_POST["id_reclamation"])  && isset($_POST["id"]) && isset($_POST["date_rec"]) && isset($_POST["description"]) && isset($_POST["state"]) && isset($_POST["objet"])
-    ) {
+if (isset($_POST["reponse"]) && isset($_GET["id"])) {
+    if (!empty($_POST["reponse"]) && !empty($_GET["id"])) {
         // créer un objet à partir des nouvelles valeurs passées pour mettre à jour le produit choisi
-        $reclamation=new  Reclamation(
+        $reponse=new  reponse(
     
         $_POST['id_reclamation'],
         $_POST['objet'],
@@ -45,7 +40,7 @@ if (
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifier Réclamation</title>
+    <title>Modifier Reponse</title>
     <link rel="stylesheet" href="css/style66.css">
 </head>
 
@@ -136,48 +131,18 @@ button:hover {
     <?php
     // Retrieve the reclamation by its ID if not already fetched
     if (!empty($_GET['id'])) {
-        $reclamation = $reclamationc->getReclamationById($_GET['id']);
+        $reponse = $reponsec->getReponseById($_GET['id']);
     ?>
         <!-- Form to update the reclamation -->
         <form action="" method="POST">
-        <a href="mesReclamations.php" id="mrec">Mes Réclamations</a>
-        <h3>Modifier votre réclamation</h3>
-            <!-- ID Réclamation -->
-            <label for="id_reclamation">ID Réclamation :</label>
-            <input class="form-control form-control-user" type="text" id="id_reclamation" name="id_reclamation" readonly value="<?php echo htmlspecialchars($reclamation['id_reclamation']); ?>"><br>
-
-            <!-- ID Utilisateur -->
-            <label for="id">ID Utilisateur :</label>
-            <input class="form-control form-control-user" type="text" id="id" name="id" readonly value="<?php echo htmlspecialchars($reclamation['id']); ?>"><br>
-
-            <!-- Objet -->
-            <label for="objet">Objet :</label>
+        <a href="mesReponse.php" id="mrec">Mes reponse</a>
+        <h3>Modifier votre reponse</h3>
             
-            <select id="objet" name="objet"  >
-            <option value=""><?php echo htmlspecialchars($reclamation['objet']); ?></option>
-                <option value="cours">Problème avec le Cours</option>
-                <option value="mentor">Problème avec le Mentor</option>
-                <option value="compte">Problème de Compte Étudiant</option>
-                <option value="comptem">Problème de Compte Mentor</option>
-                <option value="technique">Problème Technique (accès plateforme)</option>
-                <option value="autre">Autre</option>
-            </select>
-       
-            <!-- Description -->
-            <label for="description">Description :</label>
-            <textarea class="form-control form-control-user" id="description" name="description"><?php echo htmlspecialchars($reclamation['description']); ?></textarea><br>
+            <label for="reponse">ID Réclamation :</label>
+           <textarea name="reponse" id="reponse"></textarea>
 
-            <!-- État -->
-            <!--<label for="state">État :</label>
-           
-            <input  class="form-control form-control-user" type="text" id="state" name="state" value="<?php echo htmlspecialchars($reclamation['state']); ?>"><br> -->
-
-            <!-- Date Réclamation -->
-            <label for="date_rec">Date de Réclamation :</label>
-            <input class="form-control form-control-user" readonly type="date" id="date_rec" name="date_rec" value="<?php echo htmlspecialchars($reclamation['date_rec']); ?>"><br>
-
-            <!-- Submit Button -->
-            <button type="submit">Modifier la Réclamation</button>
+            
+            <button type="submit">Modifier le reponse</button>
         </form>
         <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -193,34 +158,12 @@ button:hover {
             let isValid = true; // To track form validity
             let errorMessages = []; // Array to hold error messages
 
-            // Get form fields
-            const objetField = document.getElementById("objet");
-            const descriptionField = document.getElementById("description");
-            const stateField = document.getElementById("state");
+            const objetField = document.getElementById("reponse");
 
-            // Validate "Objet" field (at least 3 characters)
-            const objetValue = objetField.value.trim();
-           /* if (objetValue =="") {
+            if (reponse.length < 10) {
                 isValid = false;
-                errorMessages.push("Veuillez sélectionner un type de réclamation.");
-            }*/
-
-            // Validate "Description" field (at least 10 characters)
-            const descriptionValue = descriptionField.value.trim();
-            if (descriptionValue.length < 10) {
-                isValid = false;
-                errorMessages.push("La description doit contenir au moins 10 caractères.");
+                errorMessages.push("La reponse doit contenir au moins 10 caractères.");
             }
-
-            // Validate "State" field (must be one of predefined valid values)
-           /* const validStates = ["en attente", "en cours", "résolue"];
-            const stateValue = stateField.value.trim().toLowerCase();
-            if (!validStates.includes(stateValue)) {
-                isValid = false;
-                errorMessages.push("L'état doit être 'en attente', 'en cours' ou 'résolue'.");
-            }*/
-
-            // If form is invalid, prevent submission and show error messages
             if (!isValid) {
                 event.preventDefault(); // Stop form submission
                 errorMessageDiv.innerHTML = `<h3>Erreurs :</h3><ul><li>${errorMessages.join("</li><li>")}</li></ul>`;
@@ -234,7 +177,7 @@ button:hover {
 
     <?php
     } else {
-        echo "<p>Aucune réclamation trouvée pour mise à jour.</p>";
+        echo "<p>Aucune reponse trouvée pour mise à jour.</p>";
     }
     ?>
 

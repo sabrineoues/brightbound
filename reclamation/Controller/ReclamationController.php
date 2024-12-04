@@ -68,7 +68,7 @@ class ReclamationController
         'UPDATE reclamation SET 
             objet = :objet,
             description = :description,
-            state = :state
+            state = :state,
         WHERE id_reclamation = :id_reclamation'
     );
 

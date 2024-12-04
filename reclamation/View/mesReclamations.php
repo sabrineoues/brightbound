@@ -194,7 +194,8 @@ form {
                     
                     <!-- Delete link for removing the reclamation -->
                     <a href="deleteReclamation.php?id=<?= $reclamation['id_reclamation']; ?>">Delete</a>
-                </td>
+                    <a href="/productCRUD/reponse/View/addReponse.php?id=<?= $reclamation['id_reclamation']; ?>">Répondre</a>
+                    </td>
             </tr>
         <?php
         }
