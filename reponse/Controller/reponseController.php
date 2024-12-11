@@ -17,9 +17,9 @@ class reponseController
         }
     }
     //select one product by id
-    public function getReclamationById($id_reclamation)
+    public function getReponseById($id_reponse)
     {
-        $sql = "SELECT * FROM reclamation WHERE id_reclamation =$id_reclamation";
+        $sql = "SELECT * FROM reponse WHERE id_reponse =$id_reponse";
         $db = config::getConnexion();
     
         try {
@@ -60,26 +60,23 @@ class reponseController
         }
             
     
-        function updateReclamation($reclamation, $id_reclamation)
+function updatereponse($reponse, $id_reponse)
 {
     $db = config::getConnexion();
 
     // Corrected SQL statement
     $query = $db->prepare(
-        'UPDATE reclamation SET 
-            objet = :objet,
-            description = :description,
-            state = :state,
-        WHERE id_reclamation = :id_reclamation'
+        'UPDATE reponse SET 
+            reponse = :reponse,
+        WHERE id_reponse = :id_reponse'
     );
 
     try {
         // Execute the query with all parameters
         $query->execute([
-            'objet' => $reclamation->getObjet(),
-            'state' => $reclamation->getState(),
-            'description' => $reclamation->getDescription(),
-            'id_reclamation' => $id_reclamation // Bind the id_reclamation parameter
+            
+            'reponse' => $reponse->getReponse(),
+            'id_reponse' => $id_reponse, // Bind the id_reclamation parameter
         ]);
 
         echo $query->rowCount() . " records UPDATED successfully <br>";

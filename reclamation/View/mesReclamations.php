@@ -2,7 +2,12 @@
 
 include "../Controller/ReclamationController.php";
 $reclamationC = new ReclamationController();
-$list = $reclamationC->recList(); // This method will fetch all reclamations
+$filter = isset($_GET['state']) ? $_GET['state'] : null;
+
+// Fetch filtered or all records
+$list = $reclamationC->recList($filter); // Pass the state to your controller
+
+//$list = $reclamationC->recList(); // This method will fetch all reclamations
 ?>
 
 <!DOCTYPE html>
@@ -167,6 +172,16 @@ form {
 <body>
     <a href="addReclamation.php">Add Reclamation</a>
     <table border>
+    <form method="GET" action="">
+    <label for="state">Filter by State:</label>
+    <select name="state" id="state">
+        <option value="">All</option>
+        <option value="Pending" <?= isset($_GET['state']) && $_GET['state'] === 'En attente' ? 'selected' : '' ?>>en attente</option>
+        <option value="Resolved" <?= isset($_GET['state']) && $_GET['state'] === 'en cours' ? 'selected' : '' ?>>en cours</option>
+        <option value="Closed" <?= isset($_GET['state']) && $_GET['state'] === 'fini' ? 'selected' : '' ?>>fini</option>
+    </select>
+
+    <button type="submit">Filter</button>
         <tr>
             <th>Id Réclamation</th>
             <th>Objet</th>
@@ -201,6 +216,7 @@ form {
         }
         ?>
     </table>
+    </form>
 </body>
 
 </html>

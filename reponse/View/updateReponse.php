@@ -18,16 +18,14 @@ if (isset($_POST["reponse"]) && isset($_GET["id"])) {
         $reponse=new  reponse(
     
         $_POST['id_reclamation'],
-        $_POST['objet'],
-        $_POST['description'],
-        $_POST['state'],
-        $_POST['date_rec'],
-        $_POST['id'],
+        $_POST['id_reponse'],
+        $_POST['reponse'],
+        $_POST['date_reponse'],
         );
         // appelle de la fonction updatecommande
-        $reclamationc->updateReclamation($reclamation,$_POST["id_reclamation"]);
+        $reponsec->updatereponse($reponse,$_POST["id_reponse"]);
         // une fois l'update est faite une redirection vers la page liste des produits sera faite
-        header('Location:mesReclamations.php');
+        header('Location:mesReponse.php');
     } else
         // message en cas de manque d'information
         $error = "Missing information";
@@ -139,7 +137,7 @@ button:hover {
         <h3>Modifier votre reponse</h3>
             
             <label for="reponse">ID Réclamation :</label>
-           <textarea name="reponse" id="reponse"></textarea>
+           <textarea name="reponse" id="reponse" ><?php echo htmlspecialchars($reponse['reponse']); ?></textarea>
 
             
             <button type="submit">Modifier le reponse</button>

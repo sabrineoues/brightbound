@@ -79,6 +79,7 @@ if (isset($_POST["reponse"]) && isset($_GET["id"])) {
 <div class="container">
     <h1>Ajouter Réponse</h1>
     <form action="" method="POST">
+        
         <label for="reponse">Réponse :</label>
         <textarea id="reponse" name="reponse"></textarea>
         <button type="submit">Envoyer la Réponse</button>

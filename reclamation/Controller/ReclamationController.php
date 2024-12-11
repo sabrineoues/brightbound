@@ -4,7 +4,7 @@ require "../config.php";
 class ReclamationController
 {
     // select all product list
-    public function recList()
+   /* public function recList()
     {
         $sql = "SELECT * FROM reclamation";
         $conn = config::getConnexion();
@@ -15,7 +15,29 @@ class ReclamationController
         } catch (Exception $e) {
             die('Erreur: ' . $e->getMessage());
         }
+    }*/
+    public function recList($filter = null)
+{
+    $conn = config::getConnexion(); // Get database connection
+    try {
+        if ($filter) {
+            // If a filter is provided, use it in the query
+            $sql = "SELECT * FROM reclamation WHERE state = :state";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':state', $filter, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            // No filter, fetch all records
+            $sql = "SELECT * FROM reclamation";
+            $stmt = $conn->query($sql);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+    } catch (Exception $e) {
+        die('Erreur: ' . $e->getMessage()); // Handle errors
     }
+}
+
     //select one product by id
     public function getReclamationById($id_reclamation)
     {
