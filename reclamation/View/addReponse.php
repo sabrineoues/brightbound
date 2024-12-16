@@ -14,7 +14,7 @@ if (isset($_POST["reponse"]) && isset($_GET["id"])) {
         $reponsec = new reponseController();
         $reponsec->addReponse($reponse);
 
-        header('Location: http://localhost/productCRUD/reponse/View/mesReponse.php');
+        header('Location: http://localhost/productCRUD/reclamation/View/mesReponse.php');
         exit();
     } else {
         echo "Erreur : Les champs sont vides.";
@@ -34,6 +34,8 @@ if (isset($_POST["reponse"]) && isset($_GET["id"])) {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             color: #333;
+            background-image: url('logoo.png');
+    background-size: cover;
             margin: 0;
             padding: 20px;
         }
@@ -60,7 +62,10 @@ if (isset($_POST["reponse"]) && isset($_GET["id"])) {
             border-radius: 5px;
             border: 1px solid #ccc;
         }
-        button {
+        a{
+            text-align: center;
+        }
+        button, a {
             background-color: #2ecc71;
             color: white;
             padding: 10px 20px;
@@ -70,7 +75,7 @@ if (isset($_POST["reponse"]) && isset($_GET["id"])) {
             display: block;
             margin: 0 auto;
         }
-        button:hover {
+        button:hover ,a  {
             background-color: #27ae60;
         }
     </style>

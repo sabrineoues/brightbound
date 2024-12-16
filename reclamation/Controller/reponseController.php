@@ -67,16 +67,15 @@ function updatereponse($reponse, $id_reponse)
     // Corrected SQL statement
     $query = $db->prepare(
         'UPDATE reponse SET 
-            reponse = :reponse,
+            reponse = :reponse
         WHERE id_reponse = :id_reponse'
     );
 
     try {
         // Execute the query with all parameters
         $query->execute([
-            
             'reponse' => $reponse->getReponse(),
-            'id_reponse' => $id_reponse, // Bind the id_reclamation parameter
+            'id_reponse' => $id_reponse, // Bind the id_reponse parameter
         ]);
 
         echo $query->rowCount() . " records UPDATED successfully <br>";
@@ -84,6 +83,7 @@ function updatereponse($reponse, $id_reponse)
         echo "Error: " . $e->getMessage();
     }
 }
+
 
         
 
