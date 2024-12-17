@@ -16,27 +16,23 @@ class ReclamationController
             die('Erreur: ' . $e->getMessage());
         }
     }*/
-    public function recList($filter = null)
-{
-    $conn = config::getConnexion(); // Get database connection
-    try {
+    public function recList($filter = null) {
+        $sql = "SELECT * FROM reclamation";
         if ($filter) {
-            // If a filter is provided, use it in the query
-            $sql = "SELECT * FROM reclamation WHERE state = :state";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':state', $filter, PDO::PARAM_STR);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } else {
-            // No filter, fetch all records
-            $sql = "SELECT * FROM reclamation";
-            $stmt = $conn->query($sql);
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $sql .= " WHERE state = :filter";
         }
-    } catch (Exception $e) {
-        die('Erreur: ' . $e->getMessage()); // Handle errors
+    
+        $db = config::getConnexion();
+        $query = $db->prepare($sql);
+    
+        if ($filter) {
+            $query->bindParam(':filter', $filter);
+        }
+    
+        $query->execute();
+        return $query->fetchAll();
     }
-}
+    
 
     //select one product by id
     public function getReclamationById($id_reclamation)
